@@ -63,8 +63,10 @@ public class ToJSONController implements InitializingBean {
 	    try {
 		    gen = new JsonFactory().createGenerator(writer);
 		    gen.writeStartObject();
-		    
-		    gen.writeFieldName("csv");
+		    gen.writeFieldName("data");
+
+		    gen.writeStartObject();
+		    gen.writeFieldName("items");
 		    gen.writeStartArray();
 		    
 		    CSVRecord	header = null;
@@ -104,8 +106,10 @@ public class ToJSONController implements InitializingBean {
 				n++;
 			}
 
-			gen.writeEndArray();
+			gen.writeEndArray();	// items
 			gen.writeEndObject();
+
+			gen.writeEndObject();	// data
 
 			gen.close();
 	    } catch (JsonGenerationException e1) {
