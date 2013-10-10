@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,11 +38,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Controller
 public class ToJSONController implements InitializingBean {
     private CSVFormat		csvformat = CSVFormat.DEFAULT;
+    private static ConcurrentHashMap<String, StringWriter> cache = null;
     private ObjectMapper	mapper = null;
+    private static String	LOGFMT = "{'remoteaddr':'%s', 'id':'%s', 'status':'%s'}";
+    private Logger			logger = null;
+
+	private void audit(String remoteAddr, String id, String status) {
+    	logger.info(LOGFMT, remoteAddr, id, status);
+    }
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
+	    cache = new ConcurrentHashMap<String, StringWriter>();
 	    mapper = new ObjectMapper();
+	    
+		String packageName = this.getClass().getPackage().getName();
+	    logger = LogManager.getFormatterLogger(packageName);
 	}
 
 	public static void addCORSHeaders(HttpServletResponse resp) {
@@ -131,7 +145,6 @@ public class ToJSONController implements InitializingBean {
 	@RequestMapping(value="/2json/api", method=RequestMethod.GET)
 	@ResponseBody
 	public JsonNode getByID(@RequestParam String url, HttpServletRequest req, HttpServletResponse resp) {
-System.out.println("url = '" + url + "'");
 		boolean hasheader = true;
 
 		StringWriter	json = null;
@@ -141,14 +154,15 @@ System.out.println("url = '" + url + "'");
 		try {
 			CloseableHttpResponse csvResp = csvClient.execute(csvGet);
 			try {
-//				if ((json = cache.get(sourceurl)) != null) {
-//					logger.audit(req.getRemoteAddr(), id, "cached");
-//				} else {
+				if ((json = cache.get(url)) != null) {
+					audit(req.getRemoteAddr(), url, "cached");
+				} else {
 					HttpEntity csvEntity = csvResp.getEntity();
 				    if (csvEntity != null) {
 				        InputStream instream = csvEntity.getContent();
 				        try {
 							// do something useful
+				    	    audit(req.getRemoteAddr(), url, "live");
 				        	json = csvToJSON(instream, hasheader);
 				        } finally {
 				        	if (instream != null) {
@@ -157,14 +171,14 @@ System.out.println("url = '" + url + "'");
 				        }
 				    }
 					EntityUtils.consume(csvEntity);
-//					cache.put(sourceurl, json);
-//				}
+					cache.put(url, json);
+				}
 				addCORSHeaders(resp);
 			} catch (Exception e) {
 				try {
-//					json = mapper.readTree("{'p1meta': {'status': 404}}");
+					return mapper.readTree("{'error': {'errorcode': 404}}");
 				} catch (Exception ee) {
-//					logger.error("mapper.readTree", ee);
+					logger.error("mapper.readTree", ee);
 				}
 			} finally {
 				csvResp.close();
