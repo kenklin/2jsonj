@@ -36,7 +36,7 @@ html,body,#map-canvas {
 	var titles = [];
 
 	var csvUrl = "https://raw.github.com/CityOfPhiladelphia/ppa-data/master/red-light-cameras/red-light-camera-locations.csv";
-	var toJsonUrl = "http://localhost:8080/2jsonj/2json/api?url=";
+	var toJsonUrl = "http://localhost:8080/2jsonj/csv2json/api?url=";
 	var mapsUrl = "http://maps.googleapis.com/maps/api/geocode/json?address=";
 
 	function setStaticLocations() {
@@ -109,6 +109,13 @@ html,body,#map-canvas {
 		map = new google.maps.Map(document.getElementById('map-canvas'),
 				mapOptions);
 		setLocations();
+		
+		// See https://developers.google.com/maps/tutorials/customizing/adding-a-legend	
+		var legend = document.getElementById('legend');
+		var div = document.createElement('div');
+		div.innerHTML = 'Source: <a href="' + csvUrl + '">' + csvUrl + '</a>';
+		legend.appendChild(div);
+		map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 	}
 
 	function drop() {
@@ -130,7 +137,7 @@ html,body,#map-canvas {
 		iterator++;
 	}
 
-	google.maps.event.addDomListener(window, 'load', initialize);
+	google.maps.event.addDomListener(window, 'load', initialize);	
 </script>
 </head>
 <body>
@@ -139,5 +146,6 @@ html,body,#map-canvas {
 			Light Camera Locations</button>
 	</div>
 	<div id="map-canvas"></div>
+	<div id="legend"></div>
 </body>
 </html>
