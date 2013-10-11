@@ -39,31 +39,32 @@ html,body,#map-canvas {
 	var codeUrl = "https://github.com/kenklin/2jsonj";
 	var toJsonUrl = "http://localhost:8080/2jsonj/csv2json/api?url=";
 	var mapsUrl = "http://maps.googleapis.com/maps/api/geocode/json?address=";
+	var debug = false;
 
 	function setStaticLocations() {
-		locations.push(new google.maps.LatLng(40.080555, -75.02851799999999)); // http://maps.googleapis.com/maps/api/geocode/json?address=Roosevelt%20Blvd%20@%20Grant%20Ave&sensor=false
-		locations.push(new google.maps.LatLng(40.094426, -75.015081)); // http://maps.googleapis.com/maps/api/geocode/json?address=Roosevelt%20Blvd%20@%20Red%20Lion%20Rd&sensor=false
-		locations.push(new google.maps.LatLng(40.04613998029149, -75.05326401970851)); // http://maps.googleapis.com/maps/api/geocode/json?address=Roosevelt%20Blvd%20@%20Cottman%20Ave&sensor=false
-		locations.push(new google.maps.LatLng(39.916387, -75.171274)); // http://maps.googleapis.com/maps/api/geocode/json?address=Broad%20St%20@%20Oregon%20Ave%20Philadelphia&sensor=false
-		locations.push(new google.maps.LatLng(39.939546, -75.198323)); //http://maps.googleapis.com/maps/api/geocode/json?address=34th%20Street%20@%20Grays%20Ferry%20Ave%20Philadelphia&sensor=false
-		locations.push(new google.maps.LatLng(40.024982, -75.12562000000001)); // http://maps.googleapis.com/maps/api/geocode/json?address=Roosevelt%20Blvd%20@%20Mascher%20Philadelphia&sensor=false
-		locations.push(new google.maps.LatLng(40.034919, -75.06964400000001)); // http://maps.googleapis.com/maps/api/geocode/json?address=Roosevelt%20Blvd%20@%20Levick%20St%20Philadelphia&sensor=false
-		locations.push(new google.maps.LatLng(40.056351, -75.04627499999999)); // http://maps.googleapis.com/maps/api/geocode/json?address=Roosevelt%20Blvd%20@%20Rhawn%20St%20Philadelphia&sensor=false
-		locations.push(new google.maps.LatLng(40.074032, -75.03477699999999)); // http://maps.googleapis.com/maps/api/geocode/json?address=Roosevelt%20Blvd%20@%20Welsh%20Rd%20Philadelphia&sensor=false
-		locations.push(new google.maps.LatLng(40.11379, -74.98749800000002)); // http://maps.googleapis.com/maps/api/geocode/json?address=Roosevelt%20Blvd%20@%20Southampton%20Rd%20Philadelphia&sensor=false
-		locations.push(new google.maps.LatLng(40.022358, -75.13949699999999)); // http://maps.googleapis.com/maps/api/geocode/json?address=Roosevelt%20Blvd%20@%209th%20St%20Philadelphia&sensor=false
-		locations.push(new google.maps.LatLng(40.1379919, -74.9557629)); // http://maps.googleapis.com/maps/api/geocode/json?address=Broad%20St%20@%20Hunting%20Park%20AveOregon%20Ave,%20Philadelphia,%20PA&sensor=false
-		locations.push(new google.maps.LatLng(39.95847, -75.23733)); // http://maps.googleapis.com/maps/api/geocode/json?address=58th%20St%20@%20Walnut%20St,%20Philadelphia,%20PA&sensor=false
-		locations.push(new google.maps.LatLng(39.9523882, -75.1640233)); // http://maps.googleapis.com/maps/api/geocode/json?address=City%20Hall,%20Philadelphia,%20PA&sensor=false
-		locations.push(new google.maps.LatLng(40.039232, -75.11)); // http://maps.googleapis.com/maps/api/geocode/json?address=Rising%20Sun%20Ave%20@%20Adams%20Ave,%20Philadelphia,%20PA&sensor=false
-		locations.push(new google.maps.LatLng(40.0077858, -75.07306009999999)); // http://maps.googleapis.com/maps/api/geocode/json?address=Aramingo%20Ave%20@%20Castor%20Ave,%20Philadelphia,%20PA&sensor=false
-		locations.push(new google.maps.LatLng(39.9754, -75.120869)); // http://maps.googleapis.com/maps/api/geocode/json?address=Aramingo%20Ave%20@%20York%20St,%20Philadelphia,%20PA&sensor=false
-		locations.push(new google.maps.LatLng(40.028764, -75.20550600000001)); // http://maps.googleapis.com/maps/api/geocode/json?address=Henry%20Ave%20@%20Walnut%20Ln,%20Philadelphia,%20PA&sensor=false
-		locations.push(new google.maps.LatLng(39.957359, -75.16237199999999)); // http://maps.googleapis.com/maps/api/geocode/json?address=Broad%20St%20@%20Vine%20St,%20Philadelphia,%20PA&sensor=false
-		locations.push(new google.maps.LatLng(39.904247, -75.239965)); // http://maps.googleapis.com/maps/api/geocode/json?address=Island%20Ave%20@%20Lindbergh%20Blvd,%20Philadelphia,%20PA&sensor=false
-		locations.push(new google.maps.LatLng(40.069169, -75.007622)); // http://maps.googleapis.com/maps/api/geocode/json?address=Academy%20Rd%20@%20Grant%20Ave,%20Philadelphia,%20PA&sensor=false
-		locations.push(new google.maps.LatLng(40.1282105, -75.023183)); // http://maps.googleapis.com/maps/api/geocode/json?address=Bustleton%20Ave%20@%20Byberry%20Rd,%20Philadelphia,%20PA&sensor=false
-		locations.push(new google.maps.LatLng(40.086689, -74.97175299999999)); // http://maps.googleapis.com/maps/api/geocode/json?address=Knights%20Rd%20@%20Woodhaven%20Rd,%20Philadelphia,%20PA&sensor=false    	
+		locations.push(new google.maps.LatLng(40.080555, -75.02851799999999));
+		locations.push(new google.maps.LatLng(40.094426, -75.015081));
+		locations.push(new google.maps.LatLng(40.04613998029149, -75.05326401970851));
+		locations.push(new google.maps.LatLng(39.916387, -75.171274));
+		locations.push(new google.maps.LatLng(39.939546, -75.198323));
+		locations.push(new google.maps.LatLng(40.024982, -75.12562000000001));
+		locations.push(new google.maps.LatLng(40.034919, -75.06964400000001));
+		locations.push(new google.maps.LatLng(40.056351, -75.04627499999999));
+		locations.push(new google.maps.LatLng(40.074032, -75.03477699999999));
+		locations.push(new google.maps.LatLng(40.11379, -74.98749800000002));
+		locations.push(new google.maps.LatLng(40.022358, -75.13949699999999));
+		locations.push(new google.maps.LatLng(40.1379919, -74.9557629));
+		locations.push(new google.maps.LatLng(39.95847, -75.23733));
+		locations.push(new google.maps.LatLng(39.9523882, -75.1640233));
+		locations.push(new google.maps.LatLng(40.039232, -75.11));
+		locations.push(new google.maps.LatLng(40.0077858, -75.07306009999999));
+		locations.push(new google.maps.LatLng(39.9754, -75.120869));
+		locations.push(new google.maps.LatLng(40.028764, -75.20550600000001));
+		locations.push(new google.maps.LatLng(39.957359, -75.16237199999999));
+		locations.push(new google.maps.LatLng(39.904247, -75.239965));
+		locations.push(new google.maps.LatLng(40.069169, -75.007622));
+		locations.push(new google.maps.LatLng(40.1282105, -75.023183));
+		locations.push(new google.maps.LatLng(40.086689, -74.97175299999999));    	
 	}
 
 	function addLatLng(str, i) {
@@ -75,11 +76,13 @@ html,body,#map-canvas {
 				data.results[0].geometry.location.lat,
 				data.results[0].geometry.location.lng);
 			var parts = data.results[0].formatted_address.split(",");
-//alert("str='" + str + "' \n" +
-//		"qualifiedStr='" + qualifiedStr + "' \n" +
-//		"url='" + url + "' \n" +
-//		"formatted_address='" + data.results[0].formatted_address + "' \n" +
-//		"parts[0]='" + parts[0] + "'");
+			if (debug) {
+				alert("str='" + str + "' \n" +
+						"qualifiedStr='" + qualifiedStr + "' \n" +
+						"url='" + url + "' \n" +
+						"formatted_address='" + data.results[0].formatted_address + "' \n" +
+						"parts[0]='" + parts[0] + "'");
+			}
 			titles[i] = parts[0];
 		}).fail(function(jqXHR, textStatus, err) {
 			alert("fail in map");
