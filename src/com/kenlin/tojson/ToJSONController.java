@@ -139,10 +139,10 @@ public class ToJSONController implements InitializingBean {
 		return writer;
 	}
 	
-	// e.g., http://localhost:8080/2jsonj/2json/api?url=https://raw.github.com/CityOfPhiladelphia/ppa-data/master/red-light-cameras/red-light-camera-locations.csv
+	// e.g., http://localhost:8080/2jsonj/csv2json/api?url=https://raw.github.com/CityOfPhiladelphia/ppa-data/master/red-light-cameras/red-light-camera-locations.csv
 	// @see http://docs.spring.io/spring/docs/3.2.4.RELEASE/spring-framework-reference/html/mvc.html#mvc-config
 	// @see https://gist.github.com/kdonald/2012289/raw/363289ee8652823f770ef82f594e9a8f15048090/ExampleController.java
-	@RequestMapping(value="/2json/api", method=RequestMethod.GET)
+	@RequestMapping(value="/csv2json/api", method=RequestMethod.GET)
 	@ResponseBody
 	public JsonNode getByID(@RequestParam String url, HttpServletRequest req, HttpServletResponse resp) {
 		boolean hasheader = true;
