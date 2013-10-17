@@ -37,7 +37,7 @@ html,body,#map-canvas {
 
 	var csvUrl = "https://raw.github.com/CityOfPhiladelphia/ppa-data/master/red-light-cameras/red-light-camera-locations.csv";
 	var codeUrl = "https://github.com/kenklin/2jsonj";
-	var toJsonUrl = "http://localhost:8080/2jsonj/csv2json/api?url=";
+	var csv2jsonUrl = "http://p1software-eb1.elasticbeanstalk.com/csv2json/api?url=";
 	var mapsUrl = "http://maps.googleapis.com/maps/api/geocode/json?address=";
 	var debug = false;
 
@@ -90,7 +90,7 @@ html,body,#map-canvas {
 	}
 
 	function setLocations() {
-		var url = toJsonUrl + csvUrl;
+		var url = csv2jsonUrl + csvUrl;
 		$.getJSON(url, {format : 'json'}, function(data) {
 			var i = 0;
 			var lastIntersection = "";	// skip duplicate intersections
@@ -156,8 +156,7 @@ html,body,#map-canvas {
 </head>
 <body>
 	<div id="panel" style="margin-left: -52px">
-		<button id="drop" onclick="drop()">Philadelphia, PA - Red
-			Light Camera Locations</button>
+		<button id="drop" onclick="drop()">Click for Philadelphia, PA Red Light Camera Locations</button>
 	</div>
 	<div id="map-canvas"></div>
 	<div id="legend"></div>
