@@ -12,7 +12,8 @@ Philadelphia Red Light Camera Locations
 To demonstrate the **2json** web service, I created a Philadelphia Red Light Camera Locations web page at
 http://kenlin.com/x/2json/philadelphia-red-light-camera-locations.html 
 (source: [here](https://github.com/kenklin/2jsonj/blob/master/WebContent/WEB-INF/philadelphia-red-light-camera-locations.html)).
-The JavaScript on the page performs the following steps:
+My web page marks the camera locations from the Open Data from the Philadelphia Parking Authority onto Google maps.
+Its JavaScript performs the following steps:
 - Calls the **2json** gateway's REST API asking it to transform the CSV at the given URL, 
 <a href="https://raw.github.com/CityOfPhiladelphia/ppa-data/master/red-light-cameras/red-light-camera-locations.csv" target="_blank">
 red-light-camera-locations.csv</a>.  The REST API is invoked via 
