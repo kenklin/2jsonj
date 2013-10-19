@@ -68,7 +68,7 @@ Philadelphia Red Light Camera Locations
 To demonstrate the **2json.com** web service, I created a Philadelphia Red Light Camera Locations
 [web page](http://kenlin.com/x/2json/philadelphia-red-light-camera-locations.html).
 My web page marks the camera locations obtained from the Open Data Philadelphia Parking Authority 
-[CSV file]((https://github.com/kenklin/2jsonj/blob/master/WebContent/WEB-INF/philadelphia-red-light-camera-locations.html)
+[CSV file](https://github.com/kenklin/2jsonj/blob/master/WebContent/WEB-INF/philadelphia-red-light-camera-locations.html)
 onto Google maps.
 
 Its JavaScript 
