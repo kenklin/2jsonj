@@ -47,14 +47,20 @@ will have an array of the corresponding CSV values, like so ...
 
 The table following summaries the technologies used ...
 <table>
-<tr><th>Type</th><th>Technology</th></tr>
-<tr><td>Language</td><td>Java</td></tr>
-<tr><td>Web Server</td><td><a href="http://tomcat.apache.org/">Tomcat</a></td></tr>
-<tr><td>Backend Web Framework</td><td><a href="http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/mvc.html">Spring MVC</a></td></tr>
-<tr><td>JSON Library</td><td><a href="http://jackson.codehaus.org/">Jackson</a></td></tr>
-<tr><td>CSV Library</td><td><a href="http://commons.apache.org/proper/commons-csv/">Apache Commons CSV</a></td></tr>
-<tr><td><a href="http://en.wikipedia.org/wiki/Infrastructure_as_a_service#Infrastructure_as_a_service_.28IaaS.29">IAAS</a>
-  <td><a ref="http://aws.amazon.com/elasticbeanstalk/">Amazon Elastic Beanstalk</a></td></tr>
+<tr><th>Type</th>
+  <th>Technology</th></tr>
+<tr><td>Language</td>
+  <td>Java</td></tr>
+<tr><td>Web Server</td>
+  <td><a href="http://tomcat.apache.org/" target="_blank">Tomcat</a></td></tr>
+<tr><td>Backend Web Framework</td>
+  <td><a href="http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/mvc.html" target="_blank">Spring MVC</a></td></tr>
+<tr><td>JSON Library</td>
+  <td><a href="http://jackson.codehaus.org/" target="_blank">Jackson</a></td></tr>
+<tr><td>CSV Library</td>
+  <td><a href="http://commons.apache.org/proper/commons-csv/" target="_blank">Apache Commons CSV</a></td></tr>
+<tr><td><a href="http://en.wikipedia.org/wiki/Infrastructure_as_a_service#Infrastructure_as_a_service_.28IaaS.29" target="_blank">IAAS</a>
+  <td><a href="http://aws.amazon.com/elasticbeanstalk/" target="_blank">Amazon Elastic Beanstalk</a></td></tr>
 </table>
 
 Philadelphia Red Light Camera Locations
