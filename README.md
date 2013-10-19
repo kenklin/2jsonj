@@ -53,6 +53,8 @@ The table following summaries the technologies used ...
 <tr><td>Backend Web Framework</td><td><a href="http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/mvc.html">Spring MVC</a></td></tr>
 <tr><td>JSON Library</td><td><a href="http://jackson.codehaus.org/">Jackson</a></td></tr>
 <tr><td>CSV Library</td><td><a href="http://commons.apache.org/proper/commons-csv/">Apache Commons CSV</a></td></tr>
+<tr><td><a href="http://en.wikipedia.org/wiki/Infrastructure_as_a_service#Infrastructure_as_a_service_.28IaaS.29">IAAS</a>
+  <td><a ref="http://aws.amazon.com/elasticbeanstalk/">Amazon Elastic Beanstalk</a></td></tr>
 </table>
 
 Philadelphia Red Light Camera Locations
