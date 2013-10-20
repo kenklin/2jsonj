@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +42,7 @@ public class ToJSONController implements InitializingBean {
     private static ConcurrentHashMap<String, StringWriter> cache = null;
     private ObjectMapper	mapper = null;
     private static String	LOGFMT = "{'remoteaddr':'%s', 'id':'%s', 'status':'%s'}";
+    private static String	NO_CACHE = "no-cache";
     private Logger			logger = null;
 
 	private void audit(String remoteAddr, String id, String status) {
@@ -154,7 +156,8 @@ public class ToJSONController implements InitializingBean {
 		try {
 			CloseableHttpResponse csvResp = csvClient.execute(csvGet);
 			try {
-				if ((json = cache.get(url)) != null) {
+				Map<String, String[]> params = req.getParameterMap();
+				if (!params.containsKey(NO_CACHE) && (json = cache.get(url)) != null) {
 					audit(req.getRemoteAddr(), url, "cached");
 				} else {
 					HttpEntity csvEntity = csvResp.getEntity();
