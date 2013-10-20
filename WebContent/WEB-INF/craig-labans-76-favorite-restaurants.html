@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Philadelphia, PA - Red Light Camera Locations</title>
+<style>
+html,body,#map-canvas {
+	height: 100%;
+	margin: 0px;
+	padding: 0px
+}
+
+#panel {
+	position: absolute;
+	top: 5px;
+	left: 50%;
+	margin-left: -180px;
+	z-index: 5;
+	background-color: #fff;
+	padding: 5px;
+	border: 1px solid #999;
+}
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+<script>
+	// Adapted from https://developers.google.com/maps/documentation/javascript/examples/marker-animations-iteration?hl=fr-FR
+	// If you're adding a number of markers, you may want to
+	// drop them on the map consecutively rather than all at once.
+	// This example shows how to use setTimeout() to space
+	// your markers' animation.
+
+	var LAT_DELTA = 0;
+	var LNG_DELTA = -0.12;
+	var CENTER = new google.maps.LatLng(39.964491 + LAT_DELTA, -75.163651 + LNG_DELTA);
+	var ZOOM = 11;
+
+	var locations = [];
+	var titles = [];
+
+	var csvUrl = "https://raw.github.com/kenklin/2jsonj/master/WebContent/WEB-INF/craig-labans-76-favorite-restaurants.csv";
+	var codeUrl = "https://github.com/kenklin/2jsonj";
+	var csv2jsonUrl = "http://www.2json.com/csv2json/api?url=";
+	var mapsUrl = "http://maps.googleapis.com/maps/api/geocode/json?address=";
+	var debug = false;
+
+	function setStaticLocations() {
+		// I didn't bother
+	}
+
+	function addLatLng(name, street, city, statezip, i) {
+		str = street + ", " + city + ", " + statezip;
+		var qualifiedStr = encodeURIComponent(str);
+		var url = mapsUrl + qualifiedStr + "&sensor=false";
+		$.getJSON(url, function(data) {
+			var lat = data.results[0].geometry.location.lat;
+			var lng = data.results[0].geometry.location.lng;
+			locations[i] = new google.maps.LatLng(lat, lng);
+			var parts = data.results[0].formatted_address.split(",");
+			if (debug) {
+				alert("str='" + str + "' \n" +
+						"qualifiedStr='" + qualifiedStr + "' \n" +
+						"url='" + url + "' \n" +
+						"formatted_address='" + data.results[0].formatted_address + "' \n" +
+						"parts[0]='" + parts[0] + "'");
+			}
+			titles[i] = name + " - " + parts[0];
+		}).fail(function(jqXHR, textStatus, err) {
+			alert("fail in map");
+		});
+	}
+
+	function setLocations() {
+		var url = csv2jsonUrl + csvUrl;
+		$.getJSON(url, {format : 'json'}, function(data) {
+			var i = 0;
+			data.data.items.forEach(function(item) {
+				addLatLng(item.Name, item.Street, item.City, item.StateZip, i);
+				i++;
+			});
+		}).fail(function(jqXHR, textStatus, err) {
+			alert("Failure. Switching to static data.");
+			setStaticLocations();
+		});
+	}
+
+	var markers = [];
+	var iterator = 0;
+
+	var map;
+
+	function initialize() {
+		var mapOptions = {
+			zoom : ZOOM,
+			mapTypeId : google.maps.MapTypeId.ROADMAP,
+			center : CENTER
+		};
+
+		map = new google.maps.Map(document.getElementById('map-canvas'),
+				mapOptions);
+		setLocations();
+		
+		// See https://developers.google.com/maps/tutorials/customizing/adding-a-legend	
+		var legend = document.getElementById('legend');
+		var div = document.createElement('div');
+		div.innerHTML = 'Data: <a href="' + csvUrl + '" target="_blank">' + csvUrl + '</a><br>' +
+			'Code: <a href="' + codeUrl + '" target="_blank">' + codeUrl + '</a>';
+		legend.appendChild(div);
+		map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+	}
+
+	function drop() {
+		for ( var i = 0; i < locations.length; i++) {
+			setTimeout(function() {
+				addMarker();
+			}, i * 200);
+		}
+	}
+
+	function addMarker() {
+		markers.push(new google.maps.Marker({
+			position : locations[iterator],
+			title : titles[iterator],
+			map : map,
+			draggable : false,
+			animation : google.maps.Animation.DROP
+		}));
+		iterator++;
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);	
+</script>
+</head>
+<body>
+	<div id="panel" style="margin-left: -52px">
+		<button id="drop" onclick="drop()">Click for Craig LaBan's 76 Favorite Restaurants Locations</button>
+	</div>
+	<div id="map-canvas"></div>
+	<div id="legend"></div>
+</body>
+</html>
