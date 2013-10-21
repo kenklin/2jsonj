@@ -82,3 +82,23 @@ to the Google Maps API to obtain their latitude and longitude.  These are then m
 - The Google Maps API is called one more time to place the Markers onto a map of Philadelphia with some drop animation.
 
 [**Try me**](http://kenlin.com/x/2json/philadelphia-red-light-camera-locations.html)
+
+Craig LaBan's 76 Favorite Restaurants
+-------------------------------------
+I love good food.  [Craig LaBan](http://www.philly.com/philly/columnists/craig_laban/), Philadelphia Inquirer's
+restaurant critic wrote a book, "Craig LaBan's 76 Favorite Restaurants" which I got as a gift in 2007.
+I found it difficult to visualize where all these wonderful restaurants were, so I transcribed their locations
+into my own
+Google [map](https://maps.google.com/maps/ms?hl=en&gl=us&ie=UTF8&oe=UTF8&msa=0&msid=210519233940291334860.0000011278882e18ade7f).
+
+I copied the information into a CSV file that others can
+[use](https://raw.github.com/kenklin/2jsonj/master/WebContent/WEB-INF/craig-labans-76-favorite-restaurants.csv),
+and then extended the red light camera web page to create a restaurant locations map.  Its JavaScript
+[code](https://github.com/kenklin/2jsonj/blob/master/WebContent/WEB-INF/craig-labans-76-favorite-restaurants.html)
+performs the following interesting steps:
+- The restaurants are rated by "Bells", with 4 being the highest rating.  These bells are placed in custom markers,
+following [this](https://developers.google.com/chart/infographics/docs/dynamic_icons?csw=1#plain_pin).
+- The marker background colors were taken from the palest color from D3's
+[category20c](https://github.com/mbostock/d3/wiki/Ordinal-Scales#categorical-colors).
+
+[**Try me**](http://kenlin.com/x/2json/craig-labans-76-favorite-restaurants.html)
