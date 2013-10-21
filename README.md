@@ -44,6 +44,10 @@ will have an array of the corresponding CSV values, like so ...
         ]
     }
 }</pre>
+- The **2json.com** web service caches the resultant JSON.  If you believe the information is stale, add 
+**no-cache** to the query string, like so ...
+
+  [http://www.2json.com/csv2json/api?url=*csvurl*&**no-cache**](http://www.2json.com/csv2json/api?url=csvurl&no-cache).
 
 The table following summaries the technologies used ...
 <table>
@@ -63,8 +67,8 @@ The table following summaries the technologies used ...
   <td><a href="http://aws.amazon.com/elasticbeanstalk/" target="_blank">Amazon Elastic Beanstalk</a></td></tr>
 </table>
 
-Philadelphia Red Light Camera Locations
----------------------------------------
+Example 1 - Philadelphia Red Light Camera Locations
+---------------------------------------------------
 To demonstrate the **2json.com** web service, I created a Philadelphia Red Light Camera Locations
 [web page](http://kenlin.com/x/2json/philadelphia-red-light-camera-locations.html).
 My web page marks the camera locations obtained from the Open Data Philadelphia Parking Authority 
@@ -78,25 +82,27 @@ performs the following steps:
 <a href="https://raw.github.com/CityOfPhiladelphia/ppa-data/master/red-light-cameras/red-light-camera-locations.csv" target="_blank">
 **?url**=https://raw.github.com/CityOfPhiladelphia/ppa-data/master/red-light-cameras/red-light-camera-locations.csv</a>.
 - Each of the JSON data's "Intersection" strings, like "Roosevelt Blvd @ Grant Ave", are then passed
-to the Google Maps API to obtain their latitude and longitude.  These are then made into Google Maps Markers.
-- The Google Maps API is called one more time to place the Markers onto a map of Philadelphia with some drop animation.
+to the Google Maps [Geocoding](https://developers.google.com/maps/documentation/geocoding/) API
+to obtain their latitude and longitude.  These are then made into Google Maps Markers.
+- The Google [Maps](https://developers.google.com/maps/documentation/javascript/reference#Map) API is called one more time
+to place the Markers onto a map of Philadelphia with some drop animation.
 
 [**Try me**](http://kenlin.com/x/2json/philadelphia-red-light-camera-locations.html)
 
-Craig LaBan's 76 Favorite Restaurants
--------------------------------------
+Example 2 - Craig LaBan's 76 Favorite Restaurants
+-------------------------------------------------
 I love good food.  [Craig LaBan](http://www.philly.com/philly/columnists/craig_laban/), Philadelphia Inquirer's
 restaurant critic wrote a book, "Craig LaBan's 76 Favorite Restaurants" which I got as a gift in 2007.
 I found it difficult to visualize where all these wonderful restaurants were, so I transcribed their locations
-into my own
+into my own static
 Google [map](https://maps.google.com/maps/ms?hl=en&gl=us&ie=UTF8&oe=UTF8&msa=0&msid=210519233940291334860.0000011278882e18ade7f).
 
-I copied the information into a CSV file that others can
-[use](https://raw.github.com/kenklin/2jsonj/master/WebContent/WEB-INF/craig-labans-76-favorite-restaurants.csv),
+To demonstrate the **2json.com** web service, I copied the information into a CSV
+[file](https://raw.github.com/kenklin/2jsonj/master/WebContent/WEB-INF/craig-labans-76-favorite-restaurants.csv),
 and then extended the red light camera web page to create a restaurant locations map.  Its JavaScript
 [code](https://github.com/kenklin/2jsonj/blob/master/WebContent/WEB-INF/craig-labans-76-favorite-restaurants.html)
 performs the following interesting steps:
-- The restaurants are rated by "Bells", with 4 being the highest rating.  These bells are placed in custom markers,
+- The restaurants are rated by "Bells", with 4 being the highest rating.  These numbers are placed in custom markers,
 following [this](https://developers.google.com/chart/infographics/docs/dynamic_icons?csw=1#plain_pin).
 - The marker background colors were taken from the palest color from D3's
 [category20c](https://github.com/mbostock/d3/wiki/Ordinal-Scales#categorical-colors).
