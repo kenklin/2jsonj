@@ -103,7 +103,7 @@ and then extended the red light camera web page to create a restaurant locations
 [code](https://github.com/kenklin/2jsonj/blob/master/WebContent/WEB-INF/craig-labans-76-favorite-restaurants.html)
 performs the following interesting steps:
 - The restaurants are rated by "Bells", with 4 being the highest rating.  These numbers are placed in custom markers,
-following [this](https://developers.google.com/chart/infographics/docs/dynamic_icons?csw=1#plain_pin).
+![Alt text](http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=4|c6dbef) following [this](https://developers.google.com/chart/infographics/docs/dynamic_icons?csw=1#plain_pin).
 - The marker background colors were taken from the palest color from D3's
 [category20c](https://github.com/mbostock/d3/wiki/Ordinal-Scales#categorical-colors).
 
