@@ -49,18 +49,18 @@ html,body,#map-canvas {
 		// I didn't bother
 	}
 
+	// Sets locations[i], titles[i], and icons[i]
 	function addLatLng(name, street, city, statezip, bells, i) {
-		str = street + ", " + city + ", " + statezip;
-		var qualifiedStr = encodeURIComponent(str);
-		var url = mapsUrl + qualifiedStr + "&sensor=false";
+		var query = encodeURIComponent(street + ", " + city + ", " + statezip);
+		var url = mapsUrl + query + "&sensor=false";
 		$.getJSON(url, function(data) {
 			var lat = data.results[0].geometry.location.lat;
 			var lng = data.results[0].geometry.location.lng;
 			locations[i] = new google.maps.LatLng(lat, lng);
 			var parts = data.results[0].formatted_address.split(",");
 			if (debug) {
-				alert("str='" + str + "' \n" +
-						"qualifiedStr='" + qualifiedStr + "' \n" +
+				alert("loc='" + loc + "' \n" +
+						"query='" + query + "' \n" +
 						"url='" + url + "' \n" +
 						"formatted_address='" + data.results[0].formatted_address + "' \n" +
 						"parts[0]='" + parts[0] + "'");
