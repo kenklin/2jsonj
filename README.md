@@ -15,12 +15,14 @@ The web service's REST API is invoked via
 PI002,Roosevelt Blvd @ Grant Ave,N/B Roosevelt Blvd @ Grant Ave,2/23/2005,6/23/2005,6,PLP
 . . .
 </pre>
-- The returned JSON object's
+- The returned JSON object follows the
+[Google JSON Style Guide](http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml),
+returning the CSV values in the
 [**data.items**](http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml?showone=error#data.items)
-property (follows [Google JSON Style Guide](http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml))
-will have an array of the corresponding CSV values, like so ...
-<pre>{
-    "data": {
+array property, like so ...
+<pre>
+{
+  "data": {
         "items": [
             {
                 "Site ID":"PI001",
@@ -44,12 +46,12 @@ will have an array of the corresponding CSV values, like so ...
         ]
     }
 }</pre>
-- The **2json.com** web service caches the resultant JSON.  If you believe the information is stale, add 
-**no-cache** to the query string, like so ...
+- The **2json.com** web service caches the *csvurl* and its resultant JSON.  If you believe the information is stale,
+add **no-cache** to the query string, like so ...
 
   [http://www.2json.com/csv2json/api?url=*csvurl*&**no-cache**](http://www.2json.com/csv2json/api?url=csvurl&no-cache).
 
-The table following summaries the technologies used ...
+The table following summaries the **2json.com** web services technologies used ...
 <table>
 <tr><th>Type</th>
   <th>Technology</th></tr>
