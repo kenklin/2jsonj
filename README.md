@@ -1,7 +1,7 @@
 2jsonj
 ======
 
-CSV to JSON REST Gateway
+CSV to JSON Web Service
 
 The **2json.com** web service transforms various data formats (currently CSV) to JSON so web clients
 can more easily make use of the data.
