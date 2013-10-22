@@ -74,7 +74,7 @@ Example 1 - Philadelphia Red Light Camera Locations
 To demonstrate the **2json.com** web service, I created a Philadelphia Red Light Camera Locations
 [web page](http://kenlin.com/x/2json/philadelphia-red-light-camera-locations.html).
 My web page marks the camera locations obtained from the Open Data Philadelphia Parking Authority 
-[CSV file](https://github.com/kenklin/2jsonj/blob/master/WebContent/WEB-INF/philadelphia-red-light-camera-locations.html)
+[CSV file](https://raw.github.com/CityOfPhiladelphia/ppa-data/master/red-light-cameras/red-light-camera-locations.csv)
 onto Google maps.
 
 Its JavaScript 
@@ -87,7 +87,7 @@ performs the following steps:
 to the Google Maps [Geocoding](https://developers.google.com/maps/documentation/geocoding/) API
 to obtain their latitude and longitude.  These are then made into Google Maps Markers.
 - The Google [Maps](https://developers.google.com/maps/documentation/javascript/reference#Map) API is called one more time
-to place the Markers onto a map of Philadelphia with some drop animation.
+to drop the Markers onto a map of Philadelphia with some drop animation.
 
 [**Try me**](http://kenlin.com/x/2json/philadelphia-red-light-camera-locations.html)
 
