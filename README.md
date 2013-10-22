@@ -85,7 +85,9 @@ performs the following steps:
 **?url**=https://raw.github.com/CityOfPhiladelphia/ppa-data/master/red-light-cameras/red-light-camera-locations.csv</a>.
 - Each of the JSON data's "Intersection" strings, like "Roosevelt Blvd @ Grant Ave", are then passed
 to the Google Maps [Geocoding](https://developers.google.com/maps/documentation/geocoding/) API
-to obtain their latitude and longitude.  These are then made into Google Maps Markers.
+to obtain their latitude and longitude.  Calls are throttled to avoid 
+[OVER_QUERY_LIMIT](https://developers.google.com/maps/documentation/business/articles/usage_limits#limitexceeded).
+These are then made into Google Maps Markers.
 - The Google [Maps](https://developers.google.com/maps/documentation/javascript/reference#Map) API is called one more time
 to drop the Markers onto a map of Philadelphia with some drop animation.
 
