@@ -7,7 +7,7 @@ The **2json.com** web service transforms various data formats (currently CSV) to
 can more easily make use of the data.
 
 The web service's REST API is invoked via 
-[**http://www.2json.com/csv2json/api?url**=*csvurl*](http://www.2json.com/csv2json/api?url=csvurl).
+[**http://api.2json.com/csv2json/api?url**=*csvurl*](http://api.2json.com/csv2json/api?url=csvurl).
 - The first row of the source CSV must contain the column titles, like so ...
   <pre>Site ID,Intersection,Site Location,Warnings,Citations,Number of Approaches,Sensor Type</pre>
 - The remaining rows of the source CSV must contain the row values, like so ...
@@ -49,7 +49,7 @@ array property, like so ...
 - The **2json.com** web service caches the *csvurl* and its resultant JSON.  If you believe the information is stale,
 add **no-cache** to the query string, like so ...
 
-  [http://www.2json.com/csv2json/api?url=*csvurl*&**no-cache**](http://www.2json.com/csv2json/api?url=csvurl&no-cache).
+  [http://api.2json.com/csv2json/api?url=*csvurl*&**no-cache**](http://api.2json.com/csv2json/api?url=csvurl&no-cache).
 
 The table following summaries the **2json.com** web services technologies used ...
 <table>
