@@ -95,6 +95,7 @@ to drop the Markers onto a map of Philadelphia with some drop animation.
 
 Example 2 - Craig LaBan's 76 Favorite Restaurants
 -------------------------------------------------
+![Alt text](https://raw.github.com/kenklin/2jsonj/master/WebContent/WEB-INF/craig-labans-76-favorite-restaurants.png)<br>
 I love good food.  [Craig LaBan](http://www.philly.com/philly/columnists/craig_laban/), Philadelphia Inquirer's
 restaurant critic wrote a book, "Craig LaBan's 76 Favorite Restaurants" which I got as a gift in 2007.
 I found it difficult to visualize where all these wonderful restaurants were, so I transcribed their locations
