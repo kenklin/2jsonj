@@ -51,21 +51,21 @@ add **no-cache** to the query string, like so ...
 
   [http://api.2json.com/csv2json/api?url=*csvurl*&**no-cache**](http://api.2json.com/csv2json/api?url=csvurl&no-cache).
 
-The table following summaries the **2json.com** web services technologies used ...
+The table following summarizes the **2json.com** technologies used ...
 <table>
 <tr><th>Type</th>
   <th>Technology</th></tr>
 <tr><td>Language</td>
-  <td>Java</td></tr>
+  <td><a href="http://www.java.com/">Java</a></td></tr>
 <tr><td>Web Server</td>
   <td><a href="http://tomcat.apache.org/" target="_blank">Tomcat</a></td></tr>
-<tr><td>Backend Web Framework</td>
+<tr><td>Web Service Framework</td>
   <td><a href="http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/mvc.html" target="_blank">Spring MVC</a></td></tr>
 <tr><td>JSON Library</td>
   <td><a href="http://jackson.codehaus.org/" target="_blank">Jackson</a></td></tr>
 <tr><td>CSV Library</td>
   <td><a href="http://commons.apache.org/proper/commons-csv/" target="_blank">Apache Commons CSV</a></td></tr>
-<tr><td><a href="http://en.wikipedia.org/wiki/Infrastructure_as_a_service#Infrastructure_as_a_service_.28IaaS.29" target="_blank">IAAS</a>
+<tr><td><a href="http://en.wikipedia.org/wiki/Cloud_computing#Platform_as_a_service_.28PaaS.29" target="_blank">PAAS</a>
   <td><a href="http://aws.amazon.com/elasticbeanstalk/" target="_blank">Amazon Elastic Beanstalk</a></td></tr>
 </table>
 
